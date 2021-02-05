@@ -1,0 +1,73 @@
+---
+title: "Bridge_homework"
+author: "Chenyi Lin"
+date: "2/4/2021"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library("ggplot2")
+```
+
+```{r}
+bridge <- read.csv('/Users/apple/Desktop/2019HwyBridgesDelimitedAllStates\ 2.csv')
+head(bridge)
+```
+```{r}
+newbridge <- bridge[,c("STATE_CODE_001","YEAR_BUILT_027","DECK_COND_058","SUPERSTRUCTURE_COND_059","SUBSTRUCTURE_COND_060","CHANNEL_COND_061","CULVERT_COND_062")]
+newbridge
+```
+```{r}
+WIbridge <- newbridge[(199422:206632),]
+WIbridge
+```
+```{r}
+ggplot(WIbridge,aes(x = DECK_COND_058, y = YEAR_BUILT_027))+
+  geom_jitter(size=0.2) +
+  ylim(1960,2018)+
+  geom_point()
+```
+From the plot of deck condition rating and year. we can see that if the bridges is new built, the deck condition rating is higher. But for rating number of 9, we can see that there is a period in the middle of the year of intervel(1960-2018), there is no bridge that get rating 9. From the no application, built years seems not that important. 
+
+
+```{r}
+ggplot(WIbridge,aes(x = SUPERSTRUCTURE_COND_059, y = YEAR_BUILT_027))+
+  geom_jitter(size=0.2) +
+  ylim(1960,2018)+
+  geom_point()
+```
+according to the plot of superstructure condition and the built year, we can have the simliar conclution with the plot of deck condition rating and year. But the differnce is that tehre is no except situation for rating 9.
+```{r}
+ggplot(WIbridge,aes(x = SUBSTRUCTURE_COND_060, y = YEAR_BUILT_027))+
+  geom_jitter(size=0.2) +
+  ylim(1960,2018)+
+  geom_point()
+```
+
+```{r}
+ggplot(WIbridge,aes(x = CHANNEL_COND_061, y = YEAR_BUILT_027))+
+  geom_jitter(size=0.2) +
+  ylim(1960,2018)+
+  geom_point()
+```
+For the plot between Channel and the built year, we can see that the rating is not affect a lot by the builtyear. 
+```{r}
+ggplot(WIbridge,aes(x = CULVERT_COND_062, y = YEAR_BUILT_027))+
+  geom_jitter(size=0.2) +
+  ylim(1960,2018)+
+  geom_point()
+```
+```{r}
+For the plot between Cculvert condition rating and the built year, most year is bridges is no application. 
+```
+
+##conclution##
+overall, the quality of bridge in Wisconsin is good. but from culvert, it seems not that great. 
+
+
+
+
